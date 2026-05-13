@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { createEvaluacion } from '../api/exposiciones'
 import { useToast } from '../context/ToastContext'
 
 export default function Exposiciones() {

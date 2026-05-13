@@ -1,10 +1,7 @@
 import client from "./client";
 
-//GET /equipos → [{ id, nombre }]
 export const getEquipos = () =>
-  client.get('/equipos').then((r) => r.data)
+  client.get('/api/v1/equipos').then((r) => r.data.content || r.data)
 
-//POST /equipos → 201 | 400
-//body: { nombre }
 export const createEquipo = (body) =>
-  client.post('/equipos', body).then((r) => r.data)
+  client.post('/api/v1/equipos', body).then((r) => r.data)
