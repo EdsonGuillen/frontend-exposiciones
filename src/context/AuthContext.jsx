@@ -4,8 +4,8 @@ import { login as loginApi } from '../api/auth'
 const AuthContext = createContext(null)
 
 export function AuthProvider({ children }) {
-  const [token, setToken]   = useState(() => localStorage.getItem('token'))
-  const [user,  setUser]    = useState(() => {
+  const [token, setToken] = useState(() => localStorage.getItem('token'))
+  const [user,  setUser]  = useState(() => {
     try { return JSON.parse(localStorage.getItem('user')) } catch { return null }
   })
   const [loading, setLoading] = useState(false)
@@ -17,7 +17,7 @@ export function AuthProvider({ children }) {
     try {
       const data = await loginApi({ username, password })
       localStorage.setItem('token', data.token)
-      const userData = { username }
+      const userData = { username: data.username, rol: data.rol }
       localStorage.setItem('user', JSON.stringify(userData))
       setToken(data.token)
       setUser(userData)
@@ -42,7 +42,7 @@ export function AuthProvider({ children }) {
   }, [])
 
   return (
-    <AuthContext.Provider value={{ token, user, loading, error, login, logout, isAuthenticated: !!token }}>
+    <AuthContext.Provider value={{ token, user, loading, error, login, logout, isAuthenticated: !!token, rol: user?.rol }}>
       {children}
     </AuthContext.Provider>
   )
