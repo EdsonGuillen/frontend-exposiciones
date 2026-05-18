@@ -11,7 +11,7 @@ export default function Login() {
   const validate = () => {
     const e = {}
     if (!form.username.trim()) e.username = 'El usuario es obligatorio'
-    if (!form.password.trim()) e.password = 'La contraseña es obligatoria'
+    if (!form.password.trim()) e.password = 'La contrasena es obligatoria'
     return e
   }
 
@@ -31,8 +31,8 @@ export default function Login() {
   return (
     <div className="login-page">
       <div className="login-card">
-        <div className="login-logo">📋</div>
-        <h1 className="login-title">Sistema de Exposiciones</h1>
+        <p className="login-brand">Sistema de Exposiciones</p>
+        <h1 className="login-title">Iniciar sesion</h1>
         <p className="login-sub">Ingresa tus credenciales para continuar</p>
 
         <form onSubmit={handleSubmit} noValidate>
@@ -43,29 +43,27 @@ export default function Login() {
               placeholder="Ej. alumno1"
               value={form.username} onChange={handleChange}
               aria-invalid={!!errors.username}
-              aria-describedby={errors.username ? 'err-user' : undefined}
               autoComplete="username"
             />
-            {errors.username && <span id="err-user" className="field-error" role="alert">{errors.username}</span>}
+            {errors.username && <span className="field-error">{errors.username}</span>}
           </div>
 
           <div className="field">
-            <label htmlFor="password">Contraseña</label>
+            <label htmlFor="password">Contrasena</label>
             <input
               id="password" name="password" type="password"
               placeholder="••••••"
               value={form.password} onChange={handleChange}
               aria-invalid={!!errors.password}
-              aria-describedby={errors.password ? 'err-pass' : undefined}
               autoComplete="current-password"
             />
-            {errors.password && <span id="err-pass" className="field-error" role="alert">{errors.password}</span>}
+            {errors.password && <span className="field-error">{errors.password}</span>}
           </div>
 
-          {error && <div className="alert-error" role="alert">{error}</div>}
+          {error && <div className="alert-error">{error}</div>}
 
           <button type="submit" className="btn-primary btn-block" disabled={loading}>
-            {loading ? 'Iniciando sesión…' : 'Iniciar sesión'}
+            {loading ? 'Iniciando sesion...' : 'Entrar'}
           </button>
         </form>
       </div>
